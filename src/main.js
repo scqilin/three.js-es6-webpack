@@ -24,7 +24,7 @@ async function init() {
 
     let cacheF = cacheImages();
     let imgs = await cacheF();
-
+    //主要函数
     setScene();
     setCamera()
     addAxis()
