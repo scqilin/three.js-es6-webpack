@@ -1,6 +1,7 @@
-import "./css/index.css";
-import * as THREE from "three";
-import consts from "./consts";
+import "./css/index.css"
+import * as fp from "lodash/fp"
+import * as THREE from "three"
+import consts from "./consts"
 import State from "./util/state"
 import OrbitControls from "./util/OrbitControls"
 import { cacheImages } from "./util"
@@ -24,16 +25,17 @@ async function init() {
 
     let cacheF = cacheImages();
     let imgs = await cacheF();
-    //主要函数
-    setScene();
-    setCamera()
-    addAxis()
-    iniPlane()
-    setLights()
-    orbitControls()
-    setRender()
-    animate()
-    windowResize()
+    let _initStage = fp.flow(setScene,setCamera,addAxis,iniPlane,setLights,orbitControls,setRender,animate,windowResize);
+    _initStage() //lodash代替下面的代码
+    // setScene()
+    // setCamera()
+    // addAxis()
+    // iniPlane()
+    // setLights()
+    // orbitControls()
+    // setRender()
+    // animate()
+    // windowResize()
     drawEarth(30)
     drawCube(imgs[1],50,60,0,0)
     drawSphere(imgs[2],30, -65, 0, 0)
