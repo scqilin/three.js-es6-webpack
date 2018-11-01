@@ -20,6 +20,7 @@
 
 ## 运行结果
 显示三个带纹理的物体。两个球体，一个立方体。能够通过orbitControls控制来控制场景。
+
 [演示地址](https://scqilin.github.io/three.js-es6-webpack/public/index.html)
 
 ![avatar](https://raw.githubusercontent.com/scqilin/three.js-es6-webpack/master/src/assets/es6-threejs.jpg)
