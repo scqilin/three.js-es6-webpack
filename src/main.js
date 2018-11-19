@@ -1,10 +1,13 @@
 import "./css/index.css"
 import * as fp from "lodash/fp"
 import * as THREE from "three"
+import * as dat from "dat.gui"
 import consts from "./consts"
 import State from "./util/state"
 import OrbitControls from "./util/OrbitControls"
-import { cacheImages } from "./util"
+import { cacheImages } from "./util/cacheImages"
+import WEBGL from "./util/WebGL"
+
 let {
     innerWidth: WIDTH,
     innerHeight: HEIGHT
@@ -22,8 +25,11 @@ let div_WebGL = document.createElement('div')
 div_WebGL.id = 'webgl-output'
 document.body.appendChild(div_WebGL)
 let container = document.getElementById('webgl-output')
+let earth 
             
-
+if (WEBGL.isWebGLAvailable() === false) {
+    document.body.appendChild(WEBGL.getWebGLErrorMessage());
+}
 
 init()
 
@@ -31,18 +37,20 @@ async function init() {
 
     let cacheF = cacheImages();
     let imgs = await cacheF();
-    let _initStage = fp.flow(setScene,setCamera,addAxis,iniPlane,setLights,orbitControls,setRender,animate,windowResize);
+    let _initStage = fp.flow(setScene,setCamera,addAxis,iniPlane,setLights,setRender,orbitControls,animate,windowResize);
     _initStage() //lodash代替下面的代码
     // setScene()
     // setCamera()
     // addAxis()
     // iniPlane()
     // setLights()
-    // orbitControls()
+    
     // setRender()
+    // orbitControls()
     // animate()
     // windowResize()
-    drawEarth(30)
+    setGUI()
+    earth = drawEarth(30)
     drawCube(imgs[1],50,60,0,0)
     drawSphere(imgs[2],30, -65, 0, 0)
 }
@@ -51,7 +59,19 @@ function setScene() {
     scene = new THREE.Scene();
     scene.fog = new THREE.Fog(0x000000, 0, 1500);    
 }
-
+function setGUI(){
+    var ballPosition = {
+        x:0,
+        y:0
+    }
+    const gui = new dat.GUI();
+    gui.add(ballPosition,"x",-65,60,0.1).onChange(function(value){
+        earth.position.x = value
+    })
+    gui.add(ballPosition,"y",-30,30,0.1).onChange(function(value){
+        earth.position.y = value
+    })
+}
 function setCamera() {
     camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 1, 2000);
     camera.position.x = 0;
@@ -106,7 +126,7 @@ function animate() {
 
 }
 function orbitControls() {
-    controls = new OrbitControls(camera);
+    controls = new OrbitControls(camera,renderer.domElement);
     controls.autoRotateSpeed = 0.2;    
     controls.enableDamping = true;//阻尼 阻尼系数
     controls.dampingFactor = 0.4;
@@ -172,5 +192,5 @@ function drawEarth(r) {
     });
     let mesh = new THREE.Mesh(geometry, material);
     scene.add(mesh);
-    //return mesh;
+    return mesh;
 }

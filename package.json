@@ -26,6 +26,7 @@
     "webpack-dev-server": "^2.9.3"
   },
   "dependencies": {
+    "dat.gui": "^0.7.3",
     "gsap": "^1.20.3",
     "lodash": "^4.17.4",
     "three": "^0.89.0"
