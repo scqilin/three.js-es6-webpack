@@ -28,7 +28,7 @@ module.exports = {
             }]
         },{
             test: /\.(png|jpg)$/,
-            loader: 'url-loader?limit=8192&name=images/[hash:8].[name].[ext]'
+            loader: 'url-loader?limit=819200&name=images/[hash:8].[name].[ext]' //小于800k 转成 base64 码 8192=8k
         }
     ]
     },

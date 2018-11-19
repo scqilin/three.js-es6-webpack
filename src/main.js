@@ -12,12 +12,18 @@ let {
     scene,
     camera,
     renderer
-} = consts,
-    container = document.getElementById('webgl-output'),
+} = consts,    
     controls,
     state = new State();
 let clock = new THREE.Clock();
 document.body.appendChild(state.domElement);
+
+let div_WebGL = document.createElement('div')
+div_WebGL.id = 'webgl-output'
+document.body.appendChild(div_WebGL)
+let container = document.getElementById('webgl-output')
+            
+
 
 init()
 
