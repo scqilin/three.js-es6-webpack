@@ -2,9 +2,10 @@ import "./css/index.css"
 import * as fp from "lodash/fp"
 import * as THREE from "three"
 import * as dat from "dat.gui"
+import OrbitControls from 'three-orbitcontrols'
 import consts from "./consts"
 import State from "./util/state"
-import OrbitControls from "./util/OrbitControls"
+// import OrbitControls from "./util/OrbitControls"
 import { cacheImages } from "./util/cacheImages"
 import WEBGL from "./util/WebGL"
 
@@ -102,7 +103,7 @@ function setRender() {
         alpha: false,
     });
     renderer.setSize(WIDTH, HEIGHT);
-    renderer.setClearColor(0x000000, 1);
+    renderer.setClearColor(0x220022, 1);
     container.appendChild(renderer.domElement);
 }
 function addAxis() {
