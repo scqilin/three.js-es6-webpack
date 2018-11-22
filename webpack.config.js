@@ -1,11 +1,12 @@
 var DashboardPlugin = require('webpack-dashboard/plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+const num = 'main1'; //不同案例编号 每次修改 修改入口函数 根据入口.js 生成不同文件夹
 module.exports = {
     devtool: 'eval-source-map',
-    entry: __dirname + "/src/main.js",
+    entry: __dirname + "/src/"+num+".js",
     output: {
-        path: __dirname + "/public",
-        filename: "bundle.js"
+        path: __dirname + "/public/"+num,
+        filename: num+".js"
     },
     devServer: {
         contentBase: "./public",

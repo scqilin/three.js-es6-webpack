@@ -74,5 +74,8 @@ Lodash 的模块化方法 非常适用于：
     -  入口函数main.js中 _initStage 就使用了lodash/fp 简化了代码。
 
 6. 通过npm方式增加了dat.gui 和 WEBGL ，
+
+7. 使用es6 中 calss 方式，并使用单例模式。入口main1.js  class 在 base.js。通过静态函数方式 初始化场景。多次调用只返回一个。发布分支版本吧。
+
 ## 版本1.1.1
 2018年11月19日
