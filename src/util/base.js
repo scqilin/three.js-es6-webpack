@@ -137,7 +137,7 @@ class DrBaseScene {
         controls.enableZoom = true;
         controls.minDistance = 5;
         controls.maxDistance = 1000;
-        controls.enablePan = false;//右键拖拽
+        // controls.enablePan = false;//右键拖拽
     }
 
     render() {

@@ -77,5 +77,29 @@ Lodash 的模块化方法 非常适用于：
 
 7. 使用es6 中 calss 方式，并使用单例模式。入口main1.js  class 在 base.js。通过静态函数方式 初始化场景。多次调用只返回一个。
 
+8. 增加 obj模型
+
 ## 版本1.1.1
 2018年11月19日
+
+## 版本1.2.0
+2018年11月26日
+1. 支持 obj ply 模型解析 
+
+ - 安装 "three-obj-loader": "^1.1.3",    "three-ply-loader": "^1.0.0"
+ - 配置 {
+            test: /\.(obj|ply)$/,
+            loader: 'url-loader?limit=8192&name=mod/[hash:8].[name].[ext]'
+        }
+ - 引入模块
+
+ ```javascript
+// import * as THREE from "three"; //不行
+const THREE = require('three');
+require('three-obj-loader')(THREE)
+require('three-ply-loader')(THREE)
+
+ ```
+  - Promise async awaite 异步加载 等待模型加载完成之后再执行后面代码
+
+模型这一块折腾了好多天。
