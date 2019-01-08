@@ -102,4 +102,4 @@ require('three-ply-loader')(THREE)
  ```
   - Promise async awaite 异步加载 等待模型加载完成之后再执行后面代码
 
-模型这一块折腾了好多天。
+模型这一块折腾了好多天。模型加载
